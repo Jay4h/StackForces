@@ -7,6 +7,7 @@ dotenv.config();
 import { connectDatabase } from './config/database';
 import { initCPPModule } from './services/cpp-bridge';
 import enrollmentRoutes from './routes/enrollment.routes';
+import serviceRoutes from './routes/service.routes';
 // backend/src/index.ts
 import redisClient, { connectRedis } from './config/redis';
 
@@ -59,6 +60,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/enrollment', enrollmentRoutes);
+app.use('/api/service', serviceRoutes); // Phase 2 routes
 
 // Health check
 app.get('/health', (req, res) => {
@@ -73,10 +75,13 @@ app.get('/health', (req, res) => {
 app.get('/', (req, res) => {
     res.json({
         message: '🇮🇳 Bharat-ID API',
-        version: '1.0.0',
+        version: '2.0.0',
+        phase: 'Phase 2 - Pairwise DIDs & Selective Disclosure',
         endpoints: {
             health: '/health',
-            enrollment: '/api/enrollment'
+            enrollment: '/api/enrollment',
+            serviceAuth: '/api/service/authorize',
+            consentHistory: '/api/service/consent-history/:did'
         }
     });
 });

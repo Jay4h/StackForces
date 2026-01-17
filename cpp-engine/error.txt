@@ -1,0 +1,138 @@
+﻿
+> bharat-crypto@1.0.0 build
+> node-gyp rebuild
+
+node.exe : gyp info it worked if it ends with 
+ok
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( 
+   gyp info it worked if it ends with ok:Str  
+  ing) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandEr 
+   ror
+ 
+gyp info using node-gyp@11.0.0
+gyp info using node@22.14.0 | win32 | x64
+gyp info find Python using Python version 
+3.11.9 found at "C:\Users\Admin\AppData\Local\
+Microsoft\WindowsApps\PythonSoftwareFoundation
+.Python.3.11_qbz5n2kfra8p0\python.exe"
+
+gyp info find VS using VS2022 (17.11.35327.3) 
+found at:
+gyp info find VS "C:\Program Files 
+(x86)\Microsoft Visual Studio\2022\BuildTools"
+gyp info find VS run with --verbose for 
+detailed information
+gyp info spawn C:\Users\Admin\AppData\Local\Mi
+crosoft\WindowsApps\PythonSoftwareFoundation.P
+ython.3.11_qbz5n2kfra8p0\python.exe
+gyp info spawn args [
+gyp info spawn args 'C:\\Program Files\\nodejs
+\\node_modules\\npm\\node_modules\\node-gyp\\g
+yp\\gyp_main.py',
+gyp info spawn args 'binding.gyp',
+gyp info spawn args '-f',
+gyp info spawn args 'msvs',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\build\\config.gypi',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Program Files\\nodejs
+\\node_modules\\npm\\node_modules\\node-gyp\\a
+ddon.gypi',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Users\\Admin\\AppData
+\\Local\\node-gyp\\Cache\\22.14.0\\include\\no
+de\\common.gypi',
+gyp info spawn args 
+'-Dlibrary=shared_library',
+gyp info spawn args '-Dvisibility=default',
+gyp info spawn args '-Dnode_root_dir=C:\\Users
+\\Admin\\AppData\\Local\\node-gyp\\Cache\\22.1
+4.0',
+gyp info spawn args 
+'-Dnode_gyp_dir=C:\\Program Files\\nodejs\\nod
+e_modules\\npm\\node_modules\\node-gyp',
+gyp info spawn args '-Dnode_lib_file=C:\\\\Use
+rs\\\\Admin\\\\AppData\\\\Local\\\\node-gyp\\\
+\Cache\\\\22.14.0\\\\<(target_arch)\\\\node.li
+b',
+gyp info spawn args '-Dmodule_root_dir=C:\\Use
+rs\\Admin\\au-hack\\Praman\\cpp-engine',
+gyp info spawn args '-Dnode_engine=v8',
+gyp info spawn args '--depth=.',
+gyp info spawn args '--no-parallel',
+gyp info spawn args '--generator-output',
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\build',
+gyp info spawn args '-Goutput_dir=.'
+gyp info spawn args ]
+node:internal/modules/cjs/loader:1228
+  throw err;
+  ^
+
+Error: Cannot find module 'node-addon-api'
+Require stack:
+- C:\Users\Admin\au-hack\Praman\cpp-engine\[ev
+al]
+    at Function._resolveFilename 
+(node:internal/modules/cjs/loader:1225:15)
+    at Function._load 
+(node:internal/modules/cjs/loader:1055:27)
+    at TracingChannel.traceSync 
+(node:diagnostics_channel:322:14)
+    at wrapModuleLoad 
+(node:internal/modules/cjs/loader:220:24)
+    at Module.require 
+(node:internal/modules/cjs/loader:1311:12)
+    at require 
+(node:internal/modules/helpers:136:16)
+    at [eval]:1:1
+    at runScriptInThisContext 
+(node:internal/vm:209:10)
+    at node:internal/process/execution:449:12
+    at [eval]-wrapper:6:24 {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'C:\\Users\\Admin\\au-hack\\
+Praman\\cpp-engine\\[eval]' ]
+}
+
+Node.js v22.14.0
+gyp: Call to 'node -p 
+"require('node-addon-api').include"' returned 
+exit status 1 while in binding.gyp. while 
+trying to load binding.gyp
+gyp ERR! configure error 
+gyp ERR! stack Error: `gyp` failed with exit 
+code: 1
+gyp ERR! stack at ChildProcess.<anonymous> 
+(C:\Program Files\nodejs\node_modules\npm\node
+_modules\node-gyp\lib\configure.js:317:18)
+gyp ERR! stack at ChildProcess.emit 
+(node:events:518:28)
+gyp ERR! stack at ChildProcess._handle.onexit 
+(node:internal/child_process:293:12)
+gyp ERR! System Windows_NT 10.0.26200
+gyp ERR! command "C:\\Program 
+Files\\nodejs\\node.exe" "C:\\Program Files\\n
+odejs\\node_modules\\npm\\node_modules\\node-g
+yp\\bin\\node-gyp.js" "rebuild"
+gyp ERR! cwd 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+gyp ERR! node -v v22.14.0
+gyp ERR! node-gyp -v v11.0.0
+gyp ERR! not ok 
+npm error Lifecycle script `build` failed 
+with error:
+npm error code 1
+npm error path 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+npm error workspace bharat-crypto@1.0.0
+npm error location 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe 
+/d /s /c node-gyp rebuild

@@ -1,0 +1,245 @@
+/* Portal Selector - Premium Design */
+
+.portal-selector {
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Inter', sans-serif;
+}
+
+.selector-background {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    z-index: -1;
+}
+
+.selector-header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    color: white;
+}
+
+.selector-header h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0 0 16px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 20px;
+    opacity: 0.95;
+    margin: 0;
+}
+
+.portals-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.portals-container>h2 {
+    text-align: center;
+    color: white;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.portals-container>p {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.portals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.portal-card {
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    transition: height 0.3s ease;
+}
+
+.portal-card.health::before {
+    background: linear-gradient(90deg, #2196f3, #1976d2);
+}
+
+.portal-card.agriculture::before {
+    background: linear-gradient(90deg, #4caf50, #388e3c);
+}
+
+.portal-card.smartcity::before {
+    background: linear-gradient(90deg, #ff9800, #f57c00);
+}
+
+.portal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.portal-card:hover::before {
+    height: 100%;
+    opacity: 0.05;
+}
+
+.portal-icon {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.portal-card h3 {
+    font-size: 26px;
+    margin: 0 0 8px;
+    font-weight: 700;
+}
+
+.portal-card.health h3 {
+    color: #1976d2;
+}
+
+.portal-card.agriculture h3 {
+    color: #388e3c;
+}
+
+.portal-card.smartcity h3 {
+    color: #f57c00;
+}
+
+.portal-card>p {
+    color: #666;
+    font-size: 15px;
+    margin: 0 0 20px;
+    line-height: 1.6;
+}
+
+.requested-data {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.requested-data small {
+    display: block;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+}
+
+.data-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.data-tags span {
+    background: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.portal-action {
+    color: #667eea;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.privacy-info {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    padding: 32px;
+    display: flex;
+    gap: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    margin-bottom: 32px;
+}
+
+.privacy-icon {
+    font-size: 64px;
+    flex-shrink: 0;
+}
+
+.privacy-info h4 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    color: #333;
+}
+
+.privacy-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.privacy-info li {
+    padding: 8px 0;
+    color: #555;
+    font-size: 15px;
+}
+
+.phase-info {
+    text-align: center;
+}
+
+.back-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.back-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .selector-header h1 {
+        font-size: 36px;
+    }
+
+    .portals-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .privacy-info {
+        flex-direction: column;
+        text-align: center;
+    }
+}

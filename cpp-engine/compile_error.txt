@@ -1,0 +1,681 @@
+﻿
+> bharat-crypto@1.0.0 build
+> node-gyp rebuild
+
+node.exe : gyp info it worked if it ends with 
+ok
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( 
+   gyp info it worked if it ends with ok:Str  
+  ing) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandEr 
+   ror
+ 
+gyp info using node-gyp@10.3.1
+gyp info using node@22.14.0 | win32 | x64
+gyp info find Python using Python version 
+3.11.9 found at "C:\Users\Admin\AppData\Local\
+Microsoft\WindowsApps\PythonSoftwareFoundation
+.Python.3.11_qbz5n2kfra8p0\python.exe"
+
+gyp info find VS using VS2022 (17.11.35327.3) 
+found at:
+gyp info find VS "C:\Program Files 
+(x86)\Microsoft Visual Studio\2022\BuildTools"
+gyp info find VS run with --verbose for 
+detailed information
+gyp info spawn C:\Users\Admin\AppData\Local\Mi
+crosoft\WindowsApps\PythonSoftwareFoundation.P
+ython.3.11_qbz5n2kfra8p0\python.exe
+gyp info spawn args [
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\node_modules\\node-gyp\\
+gyp\\gyp_main.py',
+gyp info spawn args 'binding.gyp',
+gyp info spawn args '-f',
+gyp info spawn args 'msvs',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\build\\config.gypi',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\node_modules\\node-gyp\\
+addon.gypi',
+gyp info spawn args '-I',
+gyp info spawn args 'C:\\Users\\Admin\\AppData
+\\Local\\node-gyp\\Cache\\22.14.0\\include\\no
+de\\common.gypi',
+gyp info spawn args 
+'-Dlibrary=shared_library',
+gyp info spawn args '-Dvisibility=default',
+gyp info spawn args '-Dnode_root_dir=C:\\Users
+\\Admin\\AppData\\Local\\node-gyp\\Cache\\22.1
+4.0',
+gyp info spawn args '-Dnode_gyp_dir=C:\\Users\
+\Admin\\au-hack\\Praman\\cpp-engine\\node_modu
+les\\node-gyp',
+gyp info spawn args '-Dnode_lib_file=C:\\\\Use
+rs\\\\Admin\\\\AppData\\\\Local\\\\node-gyp\\\
+\Cache\\\\22.14.0\\\\<(target_arch)\\\\node.li
+b',
+gyp info spawn args '-Dmodule_root_dir=C:\\Use
+rs\\Admin\\au-hack\\Praman\\cpp-engine',
+gyp info spawn args '-Dnode_engine=v8',
+gyp info spawn args '--depth=.',
+gyp info spawn args '--no-parallel',
+gyp info spawn args '--generator-output',
+gyp info spawn args 'C:\\Users\\Admin\\au-hack
+\\Praman\\cpp-engine\\build',
+gyp info spawn args '-Goutput_dir=.'
+gyp info spawn args ]
+gyp info spawn C:\Program Files 
+(x86)\Microsoft Visual Studio\2022\BuildTools\
+MSBuild\Current\Bin\MSBuild.exe
+gyp info spawn args [
+gyp info spawn args 'build\\binding.sln',
+gyp info spawn args '/clp:Verbosity=minimal',
+gyp info spawn args '/nologo',
+gyp info spawn args 
+'/p:Configuration=Release;Platform=x64'
+gyp info spawn args ]
+
+  bharat_crypto.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(380,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(380,19): error C2146: syntax error: missing ';' before identifier 'HCRYPTPROV' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(380,19): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(900,17): error C3646: 'dwVersion': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(900,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(902,13): error C2143: syntax error: missing ';' before '*' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(902,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(902,19): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(903,13): error C3646: 'cbOID': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(903,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(909,13): error C2143: syntax error: missing ';' before '*' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(909,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(909,27): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(910,13): error C3646: 'cbInnerString': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(910,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(911,13): error C2143: syntax error: missing ';' before '*' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(911,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(911,27): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(912,13): error C3646: 'cbOuterString': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(912,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(917,13): error C3646: 'dwUse': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(917,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(919,13): error C3646: 'cBits': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(919,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(920,13): error C3646: 'dwFlags': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(920,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(921,13): error C3646: 'dwReserved': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(921,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(933,15): error C3646: 'dwBitLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(933,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(934,15): error C3646: 'dwNameLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(934,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(935,15): error C3646: 'szName': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(935,21): error C2143: syntax error: missing ',' before '[' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(935,25): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(941,15): error C3646: 'dwDefaultLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(941,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(942,15): error C3646: 'dwMinLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(942,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(943,15): error C3646: 'dwMaxLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(943,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(944,15): error C3646: 'dwProtocols': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(944,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(945,15): error C3646: 'dwNameLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(945,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(946,15): error C3646: 'szName': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(946,21): error C2143: syntax error: missing ',' before '[' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(946,25): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(947,15): error C3646: 'dwLongNameLen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(947,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(948,15): error C3646: 'szLongName': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(948,25): error C2143: syntax error: missing ',' before '[' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(948,29): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(953,17): error C3646: 'bType': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(953,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(954,17): error C3646: 'bVersion': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(954,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(955,17): error C3646: 'reserved': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(955,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(960,17): error C3646: 'magic': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(960,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(961,17): error C3646: 'bitlen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(961,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(962,17): error C3646: 'pubexp': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(962,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(967,17): error C3646: 'magic': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(967,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(968,17): error C3646: 'bitlen': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(968,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(972,17): error C3646: 'counter': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(972,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(973,17): error C3646: 'seed': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(973,21): error C2143: syntax error: missing ',' before '[' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(973,25): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(977,17): error C3646: 'magic': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(977,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(978,17): error C3646: 'bitlenP': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(978,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(979,17): error C3646: 'bitlenQ': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(979,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(980,17): error C3646: 'bitlenJ': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(980,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(985,17): error C3646: 'magic': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(985,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(986,17): error C3646: 'bitlenP': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(986,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(987,17): error C3646: 'bitlenQ': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(987,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(988,17): error C3646: 'bitlenJ': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(988,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(989,17): error C3646: 'bitlenX': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(989,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(994,17): error C3646: 'dwKeySpec': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(994,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(995,17): error C3646: 'Type': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(995,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(996,17): error C3646: 'Subtype': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(996,9): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1051,37): error C3646: 'cbData': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1051,29): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1052,41): error C2143: syntax error: missing ';' before '*' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1052,33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1052,48): error C2238: unexpected token(s) preceding ';' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1071,25): error C3646: 'dwVersion': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1071,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1073,21): error C3646: 'pszContentEncObjId': unknown override specifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1073,5): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1086,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1087,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1087,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1088,30): error C2065: 'phProv': undeclared identifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1089,17): error C2065: 'LPCSTR': undeclared identifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1089,27): error C2146: syntax error: missing ')' before identifier 'szContainer' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1096,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1095,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1095,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1097,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1097,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1098,30): error C2065: 'phProv': undeclared identifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1099,17): error C2065: 'LPCWSTR': undeclared identifier [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1099,28): error C2146: syntax error: missing ')' before identifier 'szContainer' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1118,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1117,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1117,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1119,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1119,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1120,25): error C2146: syntax error: missing ')' before identifier 'hProv' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1132,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1131,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1131,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1133,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1133,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1134,25): error C2146: syntax error: missing ')' before identifier 'hProv' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1142,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1141,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1141,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1143,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1143,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1144,25): error C2146: syntax error: missing ')' before identifier 'hProv' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1153,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1152,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1152,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1154,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1160,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1159,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1159,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1163,13): error C2061: syntax error: identifier 'DWORD' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1161,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1170,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1169,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1169,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1173,53): error C2061: syntax error: identifier 'DWORD' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1171,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1181,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1180,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1180,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1184,13): error C2061: syntax error: identifier 'DWORD' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1182,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1191,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1190,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1190,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1194,49): error C2061: syntax error: identifier 'DWORD' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1192,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1202,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1201,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1201,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1203,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1203,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1204,25): error C2146: syntax error: missing ')' before identifier 'hProv' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1212,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1211,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1211,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1213,1): warning C4229: anachronism used: modifiers on data are ignored [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1213,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1214,65): error C2146: syntax error: missing ')' before identifier 'hProv' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1223,1): error C2143: syntax error: missing ';' before '__cdecl' [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1222,1): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1222,1): error C2086: 'int BOOL': redefinition [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1085,1):
+      see declaration of 'BOOL'
+  
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\wincrypt.h(1222,1): error C1003: error count exceeds 100; stopping compilation [C:\Users\Admin\au-hack\Praman\cpp-engine\build\bharat_crypto.vcxproj]
+  (compiling source file '../src/bharat_crypto.cpp')
+  
+gyp ERR! build error 
+gyp ERR! stack Error: `C:\Program Files 
+(x86)\Microsoft Visual Studio\2022\BuildTools\
+MSBuild\Current\Bin\MSBuild.exe` failed with 
+exit code: 1
+gyp ERR! stack at ChildProcess.<anonymous> (C:
+\Users\Admin\au-hack\Praman\cpp-engine\node_mo
+dules\node-gyp\lib\build.js:216:23)
+gyp ERR! stack at ChildProcess.emit 
+(node:events:518:28)
+gyp ERR! stack at ChildProcess._handle.onexit 
+(node:internal/child_process:293:12)
+gyp ERR! System Windows_NT 10.0.26200
+gyp ERR! command "C:\\Program 
+Files\\nodejs\\node.exe" "C:\\Users\\Admin\\au
+-hack\\Praman\\cpp-engine\\node_modules\\node-
+gyp\\bin\\node-gyp.js" "rebuild"
+gyp ERR! cwd 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+gyp ERR! node -v v22.14.0
+gyp ERR! node-gyp -v v10.3.1
+gyp ERR! not ok 
+npm error Lifecycle script `build` failed 
+with error:
+npm error code 1
+npm error path 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+npm error workspace bharat-crypto@1.0.0
+npm error location 
+C:\Users\Admin\au-hack\Praman\cpp-engine
+npm error command failed
+npm error command C:\WINDOWS\system32\cmd.exe 
+/d /s /c node-gyp rebuild

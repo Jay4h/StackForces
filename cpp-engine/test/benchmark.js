@@ -17,9 +17,10 @@ try {
     console.log('------------------------------');
     const testPublicKey = 'MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE...';
     const testHardwareId = '192.168.1.100';
+    const testSalt = 'sovereign_bharat_2026';
 
     const startSingle = Date.now();
-    const did = bharatCrypto.generateDID(testPublicKey, testHardwareId);
+    const did = bharatCrypto.generateDID(testPublicKey, testHardwareId, testSalt);
     const endSingle = Date.now();
 
     console.log(`Generated DID: ${did}`);
@@ -35,7 +36,7 @@ try {
     // Test 2: Deterministic generation
     console.log('Test 2: Deterministic Generation');
     console.log('---------------------------------');
-    const did2 = bharatCrypto.generateDID(testPublicKey, testHardwareId);
+    const did2 = bharatCrypto.generateDID(testPublicKey, testHardwareId, testSalt);
 
     if (did === did2) {
         console.log('✅ Same inputs produce same DID (deterministic)\n');
@@ -46,7 +47,7 @@ try {
     // Test 3: Uniqueness test
     console.log('Test 3: Uniqueness Test');
     console.log('-----------------------');
-    const did3 = bharatCrypto.generateDID(testPublicKey + '1', testHardwareId);
+    const did3 = bharatCrypto.generateDID(testPublicKey + '1', testHardwareId, testSalt);
 
     if (did !== did3) {
         console.log('✅ Different inputs produce different DIDs\n');
@@ -61,7 +62,7 @@ try {
 
     const startBatch = Date.now();
     for (let i = 0; i < iterations; i++) {
-        bharatCrypto.generateDID(`publicKey_${i}`, `hardware_${i}`);
+        bharatCrypto.generateDID(`publicKey_${i}`, `hardware_${i}`, testSalt);
     }
     const endBatch = Date.now();
 

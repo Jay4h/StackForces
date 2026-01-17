@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { webAuthnClient } from '../services/webauthn-client';
 import './EnrollmentPage.css';
 
 function EnrollmentPage() {
+    const navigate = useNavigate();
     const [isEnrolling, setIsEnrolling] = useState(false);
     const [enrollmentStatus, setEnrollmentStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [statusMessage, setStatusMessage] = useState('');
@@ -150,6 +152,12 @@ function EnrollmentPage() {
                                     <li>🌾 Prove land ownership for subsidies</li>
                                     <li>🏙️ Use smart city transit with a tap</li>
                                 </ul>
+                                <button
+                                    className="btn btn-primary mt-3"
+                                    onClick={() => navigate('/portals')}
+                                >
+                                    🚀 Try Phase 2: Access Demo Portals
+                                </button>
                             </div>
                         </div>
                     )}

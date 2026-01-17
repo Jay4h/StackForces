@@ -177,6 +177,21 @@ export const verifyEnrollment = async (req: Request, res: Response) => {
             .digest('hex')
             .substring(0, 32);
 
+        // 🔒 DUPLICATE PREVENTION: Check if this device already has a Bharat-ID
+        const existingByHardware = await DIDModel.findOne({ 'deviceInfo.hardwareId': hardwareId });
+        const existingByCredential = await DIDModel.findOne({ credentialId: credentialIdB64 });
+
+        if (existingByHardware || existingByCredential) {
+            const existingDID = existingByHardware || existingByCredential;
+            console.log(`⚠️ Duplicate enrollment attempt detected for device: ${hardwareId}`);
+            return res.status(409).json({
+                success: false,
+                message: 'This device already has a Bharat-ID. Please login instead.',
+                did: existingDID?.did,
+                errorCode: 'DUPLICATE_ENROLLMENT'
+            });
+        }
+
         // Generate DID using C++ engine (or JavaScript fallback)
         console.log('🔨 Generating DID with cryptographic engine...');
         const did = generateDID(publicKeyB64, hardwareId);

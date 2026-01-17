@@ -13,6 +13,15 @@ export interface IDID extends Document {
     };
     credentialId: string;
     counter: number;
+    profile?: {
+        bloodGroup?: string;
+        farmerStatus?: string;
+        residencyStatus?: string;
+        fullName?: string;
+        dateOfBirth?: string;
+        address?: string;
+        phone?: string;
+    };
     createdAt: Date;
     updatedAt: Date;
 }
@@ -66,6 +75,19 @@ const DIDSchema = new Schema<IDID>(
             type: Number,
             required: true,
             default: 0
+        },
+        profile: {
+            type: {
+                bloodGroup: String,
+                farmerStatus: String,
+                residencyStatus: String,
+                fullName: String,
+                dateOfBirth: String,
+                address: String,
+                phone: String
+            },
+            required: false,
+            default: {}
         }
     },
     {
