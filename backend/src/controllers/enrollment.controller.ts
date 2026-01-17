@@ -233,3 +233,171 @@ export const verifyEnrollment = async (req: Request, res: Response) => {
         });
     }
 };
+
+/**
+ * Login Challenge - Generate Authentication Challenge
+ * For users who already have a Bharat-ID
+ */
+export const startLogin = async (req: Request, res: Response) => {
+    try {
+        const { did } = req.body;
+
+        if (!did) {
+            return res.status(400).json({
+                success: false,
+                message: 'DID is required for login'
+            });
+        }
+
+        // Find user by DID
+        const user = await DIDModel.findOne({ did });
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'Bharat-ID not found. Please enroll first.',
+                errorCode: 'DID_NOT_FOUND'
+            });
+        }
+
+        // Generate authentication challenge
+        const crypto = require('crypto');
+        const challenge = crypto.randomBytes(32).toString('base64url');
+        const sessionId = crypto.randomUUID();
+
+        // Store challenge in session
+        const sessionKey = `login:${sessionId}`;
+        await setSession(
+            sessionKey,
+            JSON.stringify({
+                challenge,
+                did,
+                userId: user._id.toString(),
+                createdAt: Date.now()
+            }),
+            SESSION_TIMEOUT / 1000
+        );
+
+        console.log(`🔐 Login challenge generated for DID: ${did}`);
+
+        res.json({
+            success: true,
+            challenge,
+            sessionId,
+            allowCredentials: [
+                {
+                    id: user.credentialId,
+                    type: 'public-key',
+                    transports: ['internal', 'hybrid']
+                }
+            ],
+            rpId: RP_ID,
+            userVerification: 'required'
+        });
+
+    } catch (error: any) {
+        console.error('❌ Error generating login challenge:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to start login process'
+        });
+    }
+};
+
+/**
+ * Verify Login - Authenticate with Existing Bharat-ID
+ * Returns user's DID and profile after successful authentication
+ */
+export const verifyLogin = async (req: Request, res: Response) => {
+    try {
+        const { authResponse, sessionId } = req.body;
+
+        if (!authResponse || !sessionId) {
+            return res.status(400).json({
+                success: false,
+                message: 'Authentication response and session ID are required'
+            });
+        }
+
+        // Retrieve session
+        const sessionKey = `login:${sessionId}`;
+        const sessionData = await getSession(sessionKey);
+
+        if (!sessionData) {
+            return res.status(400).json({
+                success: false,
+                message: 'Login session expired. Please try again.'
+            });
+        }
+
+        const session = JSON.parse(sessionData);
+
+        // Find user
+        const user = await DIDModel.findOne({ did: session.did });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        // Verify authentication using @simplewebauthn/server
+        const { verifyAuthenticationResponse } = require('@simplewebauthn/server');
+
+        let verification;
+        try {
+            verification = await verifyAuthenticationResponse({
+                response: authResponse,
+                expectedChallenge: session.challenge,
+                expectedOrigin: EXPECTED_ORIGIN,
+                expectedRPID: RP_ID,
+                authenticator: {
+                    credentialID: Buffer.from(user.credentialId, 'base64'),
+                    credentialPublicKey: Buffer.from(user.publicKey, 'base64'),
+                    counter: user.counter
+                },
+                requireUserVerification: true
+            });
+        } catch (error: any) {
+            console.error('❌ Login verification failed:', error);
+            return res.status(401).json({
+                success: false,
+                message: 'Biometric authentication failed'
+            });
+        }
+
+        if (!verification.verified) {
+            return res.status(401).json({
+                success: false,
+                message: 'Authentication failed'
+            });
+        }
+
+        // Update counter to prevent replay attacks
+        user.counter = verification.authenticationInfo.newCounter;
+        await user.save();
+
+        // Clean up session
+        await deleteSession(sessionKey);
+
+        console.log(`✅ Login successful for DID: ${user.did}`);
+
+        res.json({
+            success: true,
+            did: user.did,
+            profile: user.profile || {},
+            deviceInfo: {
+                type: user.deviceInfo.deviceType,
+                name: user.deviceInfo.deviceName
+            },
+            message: 'Login successful'
+        });
+
+    } catch (error: any) {
+        console.error('❌ Error verifying login:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to complete login'
+        });
+    }
+};

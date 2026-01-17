@@ -1,5 +1,6 @@
 import {
     startRegistration,
+    startAuthentication,
     type PublicKeyCredentialCreationOptionsJSON,
     type RegistrationResponseJSON
 } from '@simplewebauthn/browser';
@@ -38,6 +39,12 @@ interface EnrollmentResponse {
     success: boolean;
     did?: string;
     message?: string;
+    errorCode?: string;
+    profile?: any;
+    deviceInfo?: {
+        type: string;
+        name: string;
+    };
 }
 
 /**
@@ -92,9 +99,66 @@ class WebAuthnClient {
             } else if (error.name === 'NotSupportedError') {
                 throw new Error('This device does not support biometric authentication');
             } else if (error.response?.data?.message) {
-                throw new Error(error.response.data.message);
+                return {
+                    success: false,
+                    message: error.response.data.message,
+                    did: error.response.data.did,
+                    errorCode: error.response.data.errorCode
+                };
             } else {
                 throw new Error('Enrollment failed. Please try again.');
+            }
+        }
+    }
+
+    /**
+     * Login with existing Bharat-ID
+     */
+    async login(did: string): Promise<EnrollmentResponse> {
+        try {
+            console.log('🔐 Starting login for DID:', did);
+
+            // Step 1: Get authentication challenge
+            const challengeResponse = await axios.post(
+                `${API_BASE_URL}/enrollment/login/start`,
+                { did }
+            );
+
+            const { challenge, sessionId, allowCredentials, rpId, userVerification } = challengeResponse.data;
+            console.log('✅ Challenge received');
+
+            // Step 2: Trigger biometric authentication
+            console.log('👆 Triggering biometric authentication...');
+            const authResponse = await startAuthentication({
+                challenge,
+                allowCredentials,
+                rpId,
+                userVerification
+            });
+
+            console.log('✅ Biometric verified');
+
+            // Step 3: Verify authentication
+            const verifyResponse = await axios.post<EnrollmentResponse>(
+                `${API_BASE_URL}/enrollment/login/verify`,
+                { authResponse, sessionId }
+            );
+
+            console.log('🎉 Login successful:', verifyResponse.data);
+            return verifyResponse.data;
+
+        } catch (error: any) {
+            console.error('❌ Login failed:', error);
+
+            if (error.name === 'NotAllowedError') {
+                throw new Error('Biometric authentication was cancelled');
+            } else if (error.response?.data?.message) {
+                return {
+                    success: false,
+                    message: error.response.data.message
+                };
+            } else {
+                throw new Error('Login failed. Please try again.');
             }
         }
     }
