@@ -1,0 +1,27 @@
+{
+    "name": "bharat-crypto",
+    "version": "1.0.0",
+    "description": "High-performance C++ cryptographic engine for Bharat-ID",
+    "main": "build/Release/bharat_crypto.node",
+    "scripts": {
+        "configure": "node-gyp configure",
+        "build": "node-gyp rebuild",
+        "clean": "node-gyp clean",
+        "test": "node test/benchmark.js"
+    },
+    "keywords": [
+        "crypto",
+        "did",
+        "native",
+        "cpp"
+    ],
+    "author": "Herin",
+    "license": "MIT",
+    "gypfile": true,
+    "dependencies": {
+        "node-addon-api": "^7.1.0"
+    },
+    "devDependencies": {
+        "node-gyp": "^10.0.1"
+    }
+}
