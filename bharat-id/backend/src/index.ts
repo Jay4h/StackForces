@@ -19,9 +19,27 @@ app.use(helmet({
     contentSecurityPolicy: false // Allow WebAuthn API
 }));
 
-// CORS configuration
+// CORS configuration - Allow localhost and ngrok URLs for mobile testing
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://1b30460bb018.ngrok-free.app',
+    process.env.EXPECTED_ORIGIN
+].filter(Boolean);
+
 app.use(cors({
-    origin: process.env.EXPECTED_ORIGIN || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            // For development, allow any ngrok URL
+            if (origin.includes('ngrok-free.app') || origin.includes('ngrok.io')) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        }
+    },
     credentials: true
 }));
 

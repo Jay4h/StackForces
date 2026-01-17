@@ -2,12 +2,10 @@ import { Request, Response } from 'express';
 import {
     generateRegistrationOptions,
     verifyRegistrationResponse,
-    type VerifiedRegistrationResponse
+    type VerifiedRegistrationResponse,
+    type PublicKeyCredentialCreationOptionsJSON,
+    type RegistrationResponseJSON
 } from '@simplewebauthn/server';
-import type {
-    PublicKeyCredentialCreationOptionsJSON,
-    RegistrationResponseJSON
-} from '@simplewebauthn/server/dist/deps';
 import redisClient from '../config/redis';
 import { DIDModel } from '../models/did.model';
 import { generateDID } from '../services/cpp-bridge';
@@ -16,6 +14,28 @@ const RP_NAME = process.env.RP_NAME || 'Bharat-ID';
 const RP_ID = process.env.RP_ID || 'localhost';
 const EXPECTED_ORIGIN = process.env.EXPECTED_ORIGIN || 'http://localhost:5173';
 const SESSION_TIMEOUT = parseInt(process.env.SESSION_TIMEOUT || '300000');
+
+/**
+ * Detect device type from user agent string
+ */
+function detectDeviceType(userAgent: string): 'Mobile' | 'PC' | 'Unknown' {
+    if (/Android|iPhone|iPad|iPod/i.test(userAgent)) return 'Mobile';
+    if (/Windows|Macintosh|Linux/i.test(userAgent)) return 'PC';
+    return 'Unknown';
+}
+
+/**
+ * Get friendly device name from user agent
+ */
+function getDeviceName(userAgent: string): string {
+    if (/Windows/i.test(userAgent)) return 'Windows PC';
+    if (/Macintosh/i.test(userAgent)) return 'macOS';
+    if (/Linux/i.test(userAgent)) return 'Linux PC';
+    if (/iPhone/i.test(userAgent)) return 'iPhone';
+    if (/iPad/i.test(userAgent)) return 'iPad';
+    if (/Android/i.test(userAgent)) return 'Android Phone';
+    return 'Unknown Device';
+}
 
 /**
  * Start Enrollment - Generate WebAuthn Challenge
@@ -35,8 +55,9 @@ export const startEnrollment = async (req: Request, res: Response) => {
             userDisplayName: 'Bharat Citizen',
             attestationType: 'none',
             authenticatorSelection: {
-                authenticatorAttachment: 'platform', // Use device's built-in authenticator
-                userVerification: 'required', // Require biometric verification
+                // Allow both platform (built-in) and cross-platform (USB keys)
+                // Omitting authenticatorAttachment enables both PC and mobile support
+                userVerification: 'required', // Enforce biometric or PIN
                 residentKey: 'preferred'
             }
         });
@@ -131,28 +152,43 @@ export const verifyEnrollment = async (req: Request, res: Response) => {
 
         // Get device information
         const userAgent = req.headers['user-agent'] || 'unknown';
-        const hardwareId = req.ip || 'unknown';
+        const deviceType = detectDeviceType(userAgent);
+        const deviceName = getDeviceName(userAgent);
+
+        // Generate more unique hardware ID using credential ID + IP + user agent hash
+        const crypto = require('crypto');
+        const credentialIdB64 = Buffer.from(credentialID).toString('base64');
+        const hardwareId = crypto
+            .createHash('sha256')
+            .update(credentialIdB64)
+            .update(req.ip || 'unknown')
+            .update(userAgent)
+            .digest('hex')
+            .substring(0, 32);
 
         // Generate DID using C++ engine (or JavaScript fallback)
         console.log('🔨 Generating DID with cryptographic engine...');
         const did = generateDID(publicKeyB64, hardwareId);
         console.log(`✅ DID generated: ${did}`);
 
-        // Save to MongoDB
+        // Save to MongoDB with enhanced device metadata
         const didDocument = new DIDModel({
             did,
             publicKey: publicKeyB64,
             deviceInfo: {
                 hardwareId,
                 userAgent,
-                platform: 'web'
+                platform: 'web',
+                deviceType,
+                deviceName,
+                authenticatorType: 'platform' // Default, could be enhanced with authenticator info
             },
-            credentialId: Buffer.from(credentialID).toString('base64'),
+            credentialId: credentialIdB64,
             counter
         });
 
         await didDocument.save();
-        console.log('💾 DID saved to database');
+        console.log(`💾 DID saved to database (Device: ${deviceType} - ${deviceName})`);
 
         // Clean up Redis session
         await redisClient.del(sessionKey);
