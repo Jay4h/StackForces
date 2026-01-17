@@ -7,6 +7,9 @@ export interface IDID extends Document {
         hardwareId: string;
         userAgent: string;
         platform: string;
+        deviceType?: 'Mobile' | 'PC' | 'Unknown';
+        deviceName?: string;
+        authenticatorType?: 'platform' | 'cross-platform';
     };
     credentialId: string;
     counter: number;
@@ -38,6 +41,20 @@ const DIDSchema = new Schema<IDID>(
             platform: {
                 type: String,
                 required: true
+            },
+            deviceType: {
+                type: String,
+                enum: ['Mobile', 'PC', 'Unknown'],
+                required: false
+            },
+            deviceName: {
+                type: String,
+                required: false
+            },
+            authenticatorType: {
+                type: String,
+                enum: ['platform', 'cross-platform'],
+                required: false
             }
         },
         credentialId: {

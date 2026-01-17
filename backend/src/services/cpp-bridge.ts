@@ -44,7 +44,8 @@ export const generateDID = (publicKey: string, hardwareId: string): string => {
  */
 function generateDIDFallback(publicKey: string, hardwareId: string): string {
     const crypto = require('crypto');
-    const salt = 'BHARAT_SOVEREIGN_2026';
+    // Use salt from environment variable (matches C++ implementation)
+    const salt = process.env.DID_SALT || 'BHARAT_SOVEREIGN_2026';
     const rawInput = publicKey + hardwareId + salt;
 
     const hash = crypto

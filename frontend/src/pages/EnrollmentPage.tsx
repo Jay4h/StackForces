@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { webAuthnClient } from '../services/webauthn-client';
 import './EnrollmentPage.css';
 
@@ -7,6 +7,18 @@ function EnrollmentPage() {
     const [enrollmentStatus, setEnrollmentStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [statusMessage, setStatusMessage] = useState('');
     const [bharatId, setBharatId] = useState('');
+    const [deviceType, setDeviceType] = useState<'Mobile' | 'PC' | 'Unknown'>('Unknown');
+    const [hasPlatformAuth, setHasPlatformAuth] = useState(false);
+
+    // Detect device capabilities on mount
+    useEffect(() => {
+        const type = webAuthnClient.detectDeviceType();
+        setDeviceType(type);
+
+        webAuthnClient.hasPlatformAuthenticator().then(has => {
+            setHasPlatformAuth(has);
+        });
+    }, []);
 
     const handleEnrollment = async () => {
         // Check if WebAuthn is supported
@@ -97,14 +109,19 @@ function EnrollmentPage() {
                                     </>
                                 ) : (
                                     <>
-                                        <span className="btn-icon">👆</span>
+                                        <span className="btn-icon">
+                                            {deviceType === 'Mobile' ? '👆' : deviceType === 'PC' ? '🔐' : '🆔'}
+                                        </span>
                                         Create My Bharat-ID
                                     </>
                                 )}
                             </button>
 
                             <p className="note text-center mt-3">
-                                📱 Your fingerprint will be requested
+                                {deviceType === 'Mobile' && '📱 Touch your fingerprint sensor or use FaceID'}
+                                {deviceType === 'PC' && hasPlatformAuth && '🔐 Windows Hello or Touch ID will prompt'}
+                                {deviceType === 'PC' && !hasPlatformAuth && '🔑 USB Security Key or PIN will be requested'}
+                                {deviceType === 'Unknown' && '🔐 Your biometric will be requested'}
                             </p>
                         </>
                     )}

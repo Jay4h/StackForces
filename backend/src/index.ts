@@ -3,13 +3,16 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
+dotenv.config();
 import { connectDatabase } from './config/database';
-import { connectRedis } from './config/redis';
 import { initCPPModule } from './services/cpp-bridge';
 import enrollmentRoutes from './routes/enrollment.routes';
+// backend/src/index.ts
+import redisClient, { connectRedis } from './config/redis';
+
+
 
 // Load environment variables
-dotenv.config();
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -19,9 +22,27 @@ app.use(helmet({
     contentSecurityPolicy: false // Allow WebAuthn API
 }));
 
-// CORS configuration
+// CORS configuration - Allow localhost and ngrok URLs for mobile testing
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://1b30460bb018.ngrok-free.app',
+    process.env.EXPECTED_ORIGIN
+].filter(Boolean);
+
 app.use(cors({
-    origin: process.env.EXPECTED_ORIGIN || 'http://localhost:5173',
+    origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            // For development, allow any ngrok URL
+            if (origin.includes('ngrok-free.app') || origin.includes('ngrok.io')) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        }
+    },
     credentials: true
 }));
 
@@ -70,10 +91,14 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Start server
+
+
 const startServer = async () => {
     try {
-        // Connect to databases
+        // Connect to MongoDB
         await connectDatabase();
+
+        // Connect to Redis (optional - graceful fallback)
         await connectRedis();
 
         // Initialize C++ module (with graceful fallback)
@@ -94,7 +119,5 @@ const startServer = async () => {
         process.exit(1);
     }
 };
-
 startServer();
-
 export default app;

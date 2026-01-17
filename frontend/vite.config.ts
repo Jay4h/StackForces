@@ -6,6 +6,12 @@ export default defineConfig({
   server: {
     port: 5173,
     host: true,
-    https: false // Will use ngrok for HTTPS tunnel
+    https: false, // Set to true when using ngrok for mobile testing
+    // Allow ngrok hosts for mobile testing
+    allowedHosts: [
+      '1b30460bb018.ngrok-free.app',
+      '.ngrok-free.app',
+      '.ngrok.io'
+    ]
   }
 })
