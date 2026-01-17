@@ -1,0 +1,51 @@
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+npm warn cleanup Failed to remove some directories [
+npm warn cleanup   [
+npm warn cleanup     'C:\\Praman\\bharat-id\\node_modules\\eslint',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Praman\bharat-id\node_modules\eslint\lib\source-code'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Praman\\bharat-id\\node_modules\\eslint\\lib\\source-code'
+npm warn cleanup     }
+npm warn cleanup   ],
+npm warn cleanup   [
+npm warn cleanup     '\\\\?\\C:\\Praman\\bharat-id\\node_modules\\eslint',
+npm warn cleanup     [Error: EPERM: operation not permitted, rmdir 'C:\Praman\bharat-id\node_modules\eslint\lib\rules\utils\unicode'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'rmdir',
+npm warn cleanup       path: 'C:\\Praman\\bharat-id\\node_modules\\eslint\\lib\\rules\\utils\\unicode'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+npm error code EACCES
+npm error syscall lstat
+npm error path C:\Praman\bharat-id\node_modules\.bin\parser
+npm error errno -4092
+npm error Error: EACCES: permission denied, lstat 'C:\Praman\bharat-id\node_modules\.bin\parser'
+npm error     at async lstat (node:internal/fs/promises:1031:18)
+npm error     at async Promise.all (index 0)
+npm error     at async Promise.all (index 0)
+npm error     at async Promise.all (index 0)
+npm error     at async #createBinLinks (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\rebuild.js:397:5)
+npm error     at async Promise.allSettled (index 0)
+npm error     at async #linkAllBins (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\rebuild.js:378:5)
+npm error     at async #build (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\rebuild.js:161:7)
+npm error     at async Arborist.rebuild (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\rebuild.js:61:5)
+npm error     at async [reifyPackages] (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:313:11) {
+npm error   errno: -4092,
+npm error   code: 'EACCES',
+npm error   syscall: 'lstat',
+npm error   path: 'C:\\Praman\\bharat-id\\node_modules\\.bin\\parser'
+npm error }
+npm error
+npm error The operation was rejected by your operating system.
+npm error It's possible that the file was already in use (by a text editor or antivirus),
+npm error or that you lack permissions to access it.
+npm error
+npm error If you believe this might be a permissions issue, please double-check the
+npm error permissions of the file and its containing directories, or try running
+npm error the command again as root/Administrator.
+npm error A complete log of this run can be found in: C:\Users\thakk\AppData\Local\npm-cache\_logs\2026-01-17T15_32_33_398Z-debug-0.log

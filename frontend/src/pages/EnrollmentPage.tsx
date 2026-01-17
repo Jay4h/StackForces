@@ -1,191 +1,134 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { webAuthnClient } from '../services/webauthn-client';
-import './EnrollmentPage.css';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Fingerprint, Lock, ShieldCheck, AlertCircle } from 'lucide-react';
 
-function EnrollmentPage() {
+export default function EnrollmentPage() {
+    const navigate = useNavigate();
     const [isEnrolling, setIsEnrolling] = useState(false);
-    const [enrollmentStatus, setEnrollmentStatus] = useState<'idle' | 'success' | 'error'>('idle');
-    const [statusMessage, setStatusMessage] = useState('');
-    const [bharatId, setBharatId] = useState('');
-    const [deviceType, setDeviceType] = useState<'Mobile' | 'PC' | 'Unknown'>('Unknown');
-    const [hasPlatformAuth, setHasPlatformAuth] = useState(false);
+    const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [message, setMessage] = useState('');
+    const [did, setDid] = useState('');
+    const [deviceType, setDeviceType] = useState('Unknown');
 
-    // Detect device capabilities on mount
     useEffect(() => {
-        const type = webAuthnClient.detectDeviceType();
-        setDeviceType(type);
-
-        webAuthnClient.hasPlatformAuthenticator().then(has => {
-            setHasPlatformAuth(has);
-        });
+        setDeviceType(webAuthnClient.detectDeviceType());
     }, []);
 
     const handleEnrollment = async () => {
-        // Check if WebAuthn is supported
-        if (!webAuthnClient.isSupported()) {
-            setEnrollmentStatus('error');
-            setStatusMessage('⚠️ Your device does not support biometric authentication. Please use a modern smartphone or laptop with fingerprint/FaceID.');
-            return;
-        }
-
         setIsEnrolling(true);
-        setEnrollmentStatus('idle');
-        setStatusMessage('');
+        setStatus('idle');
 
         try {
             const response = await webAuthnClient.enroll();
-
             if (response.success && response.did) {
-                setEnrollmentStatus('success');
-                setBharatId(response.did);
-                setStatusMessage('🎉 Your Bharat-ID has been created successfully!');
+                setStatus('success');
+                setDid(response.did);
+                setTimeout(() => navigate('/home'), 2500);
             } else {
-                setEnrollmentStatus('error');
-                setStatusMessage(response.message || 'Enrollment failed. Please try again.');
+                throw new Error(response.message || 'Enrollment failed');
             }
         } catch (error: any) {
-            setEnrollmentStatus('error');
-            setStatusMessage(error.message || 'An unexpected error occurred');
+            setStatus('error');
+            setMessage(error.message || 'Authentication failed. Please try again.');
         } finally {
             setIsEnrolling(false);
         }
     };
 
     return (
-        <div className="enrollment-page">
-            <div className="enrollment-container">
-                {/* Hero Section */}
-                <div className="hero fade-in">
-                    <div className="logo">
-                        <span className="logo-icon">🇮🇳</span>
-                        <h1>Bharat-ID</h1>
-                    </div>
-                    <p className="tagline">Your Identity. Your Control. Your Right.</p>
+        <div className="min-h-screen bg-[#F2F2F7] flex flex-col items-center justify-center p-6 font-sans">
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="w-full max-w-[440px] bg-white rounded-[28px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] border border-white/50 p-10 relative overflow-hidden"
+            >
+                {/* Header */}
+                <div className="text-center mb-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="inline-flex items-center justify-center w-20 h-20 bg-gray-50 rounded-full mb-6 border border-gray-100"
+                    >
+                        {status === 'success' ? (
+                            <ShieldCheck size={40} className="text-green-500" />
+                        ) : status === 'error' ? (
+                            <AlertCircle size={40} className="text-red-500" />
+                        ) : (
+                            <Fingerprint size={40} className="text-[#0071e3]" />
+                        )}
+                    </motion.div>
+
+                    <h1 className="text-2xl font-semibold text-[#1d1d1f] mb-2">
+                        {status === 'success' ? 'Identity Verified' : 'Create Your Praman-ID'}
+                    </h1>
+                    <p className="text-[#86868b] text-[15px] leading-relaxed">
+                        {status === 'success'
+                            ? 'Welcome to the future of identity.'
+                            : 'Use your device biometrics to create a secure, self-sovereign digital identity.'}
+                    </p>
                 </div>
 
-                {/* Main Card */}
-                <div className="card enrollment-card fade-in">
-                    {enrollmentStatus === 'idle' && (
-                        <>
-                            <h2 className="text-center mb-3">Create Your Digital Identity</h2>
-                            <p className="description text-center mb-4">
-                                Join 1.4 billion citizens in the most secure identity system.
-                                Your biometric data <strong>never leaves your device</strong>.
-                            </p>
-
-                            <div className="features mb-4">
-                                <div className="feature">
-                                    <span className="feature-icon">🔒</span>
-                                    <div>
-                                        <h3>Self-Sovereign</h3>
-                                        <p>You own your data, not the government</p>
-                                    </div>
-                                </div>
-                                <div className="feature">
-                                    <span className="feature-icon">⚡</span>
-                                    <div>
-                                        <h3>Instant Verification</h3>
-                                        <p>No centralized database delays</p>
-                                    </div>
-                                </div>
-                                <div className="feature">
-                                    <span className="feature-icon">🛡️</span>
-                                    <div>
-                                        <h3>Privacy First</h3>
-                                        <p>Zero-Knowledge Proofs prevent tracking</p>
-                                    </div>
-                                </div>
-                            </div>
-
+                <AnimatePresence mode="wait">
+                    {status === 'idle' || status === 'error' ? (
+                        <motion.div
+                            key="action"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="space-y-4"
+                        >
                             <button
-                                className="btn btn-primary btn-large pulse"
                                 onClick={handleEnrollment}
                                 disabled={isEnrolling}
+                                className="w-full bg-[#0071e3] hover:bg-[#0077ED] text-white font-medium py-[14px] rounded-xl text-[15px] transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                             >
                                 {isEnrolling ? (
                                     <>
-                                        <span className="spinner"></span>
-                                        Creating Your Bharat-ID...
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <span>Securely Authenticating...</span>
                                     </>
                                 ) : (
                                     <>
-                                        <span className="btn-icon">
-                                            {deviceType === 'Mobile' ? '👆' : deviceType === 'PC' ? '🔐' : '🆔'}
-                                        </span>
-                                        Create My Bharat-ID
+                                        <span>Continue with {deviceType === 'Mobile' ? 'FaceID' : 'Touch ID'}</span>
+                                        <Lock size={16} className="opacity-70" />
                                     </>
                                 )}
                             </button>
 
-                            <p className="note text-center mt-3">
-                                {deviceType === 'Mobile' && '📱 Touch your fingerprint sensor or use FaceID'}
-                                {deviceType === 'PC' && hasPlatformAuth && '🔐 Windows Hello or Touch ID will prompt'}
-                                {deviceType === 'PC' && !hasPlatformAuth && '🔑 USB Security Key or PIN will be requested'}
-                                {deviceType === 'Unknown' && '🔐 Your biometric will be requested'}
-                            </p>
-                        </>
-                    )}
+                            {status === 'error' && (
+                                <p className="text-center text-red-500 text-sm bg-red-50 py-2 rounded-lg">{message}</p>
+                            )}
 
-                    {enrollmentStatus === 'success' && (
-                        <div className="success-state fade-in">
-                            <div className="success-icon">✅</div>
-                            <h2 className="text-center mb-2">Welcome to Bharat-ID!</h2>
-                            <p className="text-center mb-4">{statusMessage}</p>
-
-                            <div className="did-display">
-                                <label>Your Bharat-ID:</label>
-                                <div className="did-value">{bharatId}</div>
-                                <button
-                                    className="btn-copy"
-                                    onClick={() => navigator.clipboard.writeText(bharatId)}
-                                >
-                                    📋 Copy ID
-                                </button>
+                            <div className="pt-6 flex items-center justify-center gap-2 text-xs text-[#86868b]">
+                                <ShieldCheck size={12} />
+                                <span>Your biometrics never leave this device.</span>
                             </div>
-
-                            <div className="next-steps mt-4">
-                                <h3>What's Next?</h3>
-                                <ul>
-                                    <li>🏥 Access healthcare services instantly</li>
-                                    <li>🌾 Prove land ownership for subsidies</li>
-                                    <li>🏙️ Use smart city transit with a tap</li>
-                                </ul>
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="success"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            className="text-center bg-gray-50 rounded-xl p-4 border border-dashed border-gray-300"
+                        >
+                            <div className="text-xs text-[#86868b] uppercase tracking-widest mb-2">Your New DID</div>
+                            <div className="font-mono text-sm text-[#1d1d1f] break-all select-all font-medium">
+                                {did}
                             </div>
-                        </div>
+                        </motion.div>
                     )}
+                </AnimatePresence>
+            </motion.div>
 
-                    {enrollmentStatus === 'error' && (
-                        <div className="error-state fade-in">
-                            <div className="error-icon">❌</div>
-                            <h2 className="text-center mb-2">Enrollment Failed</h2>
-                            <p className="error-message text-center mb-4">{statusMessage}</p>
-
-                            <button
-                                className="btn btn-primary"
-                                onClick={handleEnrollment}
-                            >
-                                Try Again
-                            </button>
-
-                            <div className="troubleshooting mt-4">
-                                <h3>Troubleshooting:</h3>
-                                <ul>
-                                    <li>Ensure you're using HTTPS (required for biometrics)</li>
-                                    <li>Use a modern browser (Chrome, Safari, Edge)</li>
-                                    <li>Grant permission when prompted for biometric access</li>
-                                </ul>
-                            </div>
-                        </div>
-                    )}
-                </div>
-
-                {/* Footer */}
-                <div className="footer fade-in">
-                    <p>🔐 Built with WebAuthn • 🇮🇳 Made for India</p>
-                </div>
+            {/* Footer */}
+            <div className="mt-8 text-center">
+                <p className="text-[#86868b] text-xs">
+                    Protected by Government-grade encryption.<br />
+                    Powered by Praman C++ Cryptographic Engine.
+                </p>
             </div>
         </div>
     );
 }
-
-export default EnrollmentPage;
