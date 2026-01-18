@@ -26,15 +26,18 @@ export default function HomePage() {
         restDelta: 0.001
     });
 
-    // Parallax transformations:
-    const mobileY = useTransform(smoothProgress, [0, 1], [0, -280]);
-    const mobileScale = useTransform(smoothProgress, [0, 1], [1, 1.08]);
-    const leftCardY = useTransform(smoothProgress, [0, 1], [0, -380]);
-    const rightCardY = useTransform(smoothProgress, [0, 1], [0, -480]);
-    const bottomBadgeY = useTransform(smoothProgress, [0, 1], [0, -180]);
+    // Parallax transformations - Move up to position, then FIX
+    // 0 to 0.5: Mockup moves from "user-defined start" (150px down) to aligned position (-200px)
+    const mobileY = useTransform(smoothProgress, [0, 0.5, 1], [80, -200, -200]);
+    const mobileScale = useTransform(smoothProgress, [0, 0.5], [1, 1]); // No scale change
+
+    // Side components locked to mobileY
+    const leftCardY = mobileY;
+    const rightCardY = mobileY;
+    const bottomBadgeY = mobileY;
 
     return (
-        <div ref={containerRef} className="min-h-[190vh] bg-white text-[#1a1a1a] selection:bg-blue-100 font-sans">
+        <div ref={containerRef} className="min-h-[250vh] bg-white text-[#1a1a1a] selection:bg-blue-100 font-sans">
             {/* Navbar: Matching the reference layout */}
             {/* Navbar: Matching the reference layout */}
             <Navbar />
@@ -65,9 +68,8 @@ export default function HomePage() {
                         <p className="text-lg md:text-[19px] text-gray-500 leading-relaxed font-medium max-w-[380px]">
                             The world's most secure self-sovereign identity platform. Your data, your rules.
                         </p>
-                        <button className="bg-[#0071e3] text-white px-9 py-4.5 rounded-full text-[17px] font-bold border-2 border-black hover:bg-black hover:scale-105 hover:shadow-2xl transition-all duration-300 active:scale-95 flex items-center gap-2 group">
+                        <button className="bg-white text-black border-4 border-double border-black px-9 py-3.5 text-[19px] font-serif hover:bg-black hover:text-white transition-all duration-300 rounded-none active:scale-95">
                             Get Started
-                            <span className="group-hover:translate-x-1 transition-transform inline-block">→</span>
                         </button>
                     </motion.div>
                 </div>
@@ -77,7 +79,7 @@ export default function HomePage() {
                     {/* Main Mobile Screen Mockup */}
                     <motion.div
                         style={{ y: mobileY, scale: mobileScale }}
-                        className="relative z-20 w-[300px] md:w-[410px] aspect-[0.463/1] bg-[#fdfdfd] rounded-[3.5rem] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.1)] ring-1 ring-gray-100/50"
+                        className="relative z-20 w-[220px] md:w-[320px] aspect-[0.463/1] bg-[#fdfdfd] rounded-[2.5rem] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.1)] ring-1 ring-gray-100/50"
                     >
                         <img
                             src="https://framerusercontent.com/images/8EqJJl7WcpFsqJnET6imexN7M0.png"
@@ -90,9 +92,9 @@ export default function HomePage() {
                     {/* Floating UI: Slider Card (Left) */}
                     <motion.div
                         style={{ y: leftCardY }}
-                        className="absolute left-[8%] md:left-[18%] top-[10%] z-30 hidden md:block"
+                        className="absolute left-[5%] md:left-[calc(50%-360px)] top-[15%] z-10 hidden md:block"
                     >
-                        <div className="bg-white/90 backdrop-blur-2xl p-6 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-white w-[260px]">
+                        <div className="bg-white/90 backdrop-blur-2xl p-6 rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] border border-white w-[220px]">
                             <div className="flex justify-between items-center mb-5">
                                 <span className="text-[10px] uppercase tracking-[0.1em] text-gray-400 font-bold">Verifications: 12,545</span>
                             </div>
@@ -111,7 +113,7 @@ export default function HomePage() {
                     {/* Floating UI: Label Badge (Top Right) */}
                     <motion.div
                         style={{ y: rightCardY }}
-                        className="absolute right-[8%] md:right-[22%] top-[-5%] z-30 hidden lg:block"
+                        className="absolute right-[5%] md:right-[calc(50%-320px)] top-[5%] z-10 hidden lg:block"
                     >
                         <div className="bg-black text-white px-5 py-3 rounded-full flex items-center space-x-2.5 shadow-2xl">
                             <div className="w-5 h-5 bg-white/10 rounded-full flex items-center justify-center">
@@ -124,15 +126,15 @@ export default function HomePage() {
                     {/* Floating UI: Music/Entertainment Card (Bottom Right) */}
                     <motion.div
                         style={{ y: rightCardY }}
-                        className="absolute right-[12%] md:right-[24%] top-[45%] z-30 hidden sm:block"
+                        className="absolute right-[8%] md:right-[calc(50%-340px)] top-[45%] z-10 hidden sm:block"
                     >
-                        <div className="bg-white/95 backdrop-blur-2xl p-5 rounded-[28px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] border border-white flex items-center space-x-5 w-[210px]">
+                        <div className="bg-white/95 backdrop-blur-2xl p-5 rounded-[28px] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] border border-white flex items-center space-x-5 w-[190px]">
                             <div className="w-13 h-13 bg-blue-50 rounded-2xl flex items-center justify-center text-[#4D89FF]">
                                 <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" /></svg>
                             </div>
                             <div>
                                 <div className="text-lg font-bold">Verified</div>
-                                <div className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Government Services</div>
+                                <div className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Government Services</div>
                             </div>
                         </div>
                     </motion.div>
@@ -140,7 +142,7 @@ export default function HomePage() {
                     {/* Floating UI: Tooltip Badge (Bottom Left) */}
                     <motion.div
                         style={{ y: bottomBadgeY }}
-                        className="absolute left-[15%] md:left-[25%] top-[65%] z-30 hidden lg:block"
+                        className="absolute left-[10%] md:left-[calc(50%-360px)] top-[60%] z-10 hidden lg:block"
                     >
                         <div className="bg-black text-white px-6 py-3.5 rounded-full flex items-center space-x-2.5 shadow-2xl">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
@@ -149,6 +151,8 @@ export default function HomePage() {
                     </motion.div>
                 </div>
             </div>
+
+
         </div>
     );
 }

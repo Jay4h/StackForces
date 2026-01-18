@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Copy, CheckCircle, Shield, CreditCard, Eye, EyeOff, AlertCircle, Save, User, Mail, Phone, MapPin, Calendar } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle, CreditCard, AlertCircle, User, Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 export default function ProfilePage() {
-    const [showDid, setShowDid] = useState(false);
+
     const [isEditing, setIsEditing] = useState(false);
 
     // User Form State
@@ -50,7 +50,7 @@ export default function ProfilePage() {
         }
     };
 
-    const maskedDid = `${did.substring(0, 4)} **** **** ${did.substring(did.length - 4)}`;
+
 
     return (
         <div className="min-h-screen bg-[#FBFBFD] text-[#1d1d1f] font-sans">
@@ -74,9 +74,9 @@ export default function ProfilePage() {
 
                         {/* 1. Digital ID Card (PREMIUM DARK MATTE REDESIGN) */}
                         <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1">
-                            <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 p-6 h-full flex flex-col justify-between group hover:shadow-md transition-shadow">
-                                <h3 className="text-sm font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <CreditCard size={16} /> Digital Identity
+                            <div className="bg-white rounded-[24px] shadow-sm border border-white p-6 h-full flex flex-col justify-between group hover:shadow-md transition-shadow">
+                                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                    <CreditCard size={20} /> Digital Identity
                                 </h3>
 
                                 {/* The Card Component - PREMIUM DARK MATTE */}
@@ -149,27 +149,13 @@ export default function ProfilePage() {
                                     </div>
                                 </div>
 
-                                <div className="mt-4 flex gap-3 text-sm">
-                                    <button
-                                        onClick={() => setShowDid(!showDid)}
-                                        className="flex-1 py-2 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors flex items-center justify-center gap-2 font-medium text-gray-600 border border-gray-100"
-                                    >
-                                        {showDid ? <EyeOff size={14} /> : <Eye size={14} />} {showDid ? "Hide" : "Show"}
-                                    </button>
-                                    <button
-                                        onClick={() => navigator.clipboard.writeText(did)}
-                                        className="px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors text-gray-600 border border-gray-100"
-                                        title="Copy ID"
-                                    >
-                                        <Copy size={14} />
-                                    </button>
-                                </div>
+
                             </div>
                         </div>
 
                         {/* 2. User Details Form */}
                         <div className="col-span-1 md:col-span-2 lg:col-span-2 row-span-2">
-                            <div className="bg-white rounded-[24px] shadow-sm border border-gray-100 p-8 h-full">
+                            <div className="bg-white rounded-[24px] shadow-sm border border-white p-8 h-full">
                                 <div className="flex items-center justify-between mb-6">
                                     <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                                         <User size={18} /> Personal Details
@@ -300,27 +286,30 @@ export default function ProfilePage() {
 
                         {/* 3. Account Status (Visual Bento Item) */}
                         <div className="col-span-1 md:col-span-2 lg:col-span-2">
-                            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-[24px] shadow-sm p-6 text-white h-full flex flex-col justify-between relative overflow-hidden">
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-3xl translate-x-10 -translate-y-10"></div>
+                            <div className="bg-white rounded-[24px] shadow-sm border border-white p-6 h-full flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+                                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50/50 rounded-full blur-3xl translate-x-10 -translate-y-10"></div>
 
                                 <div className="flex justify-between items-start relative z-10">
                                     <div>
-                                        <h3 className="font-bold text-lg mb-1">Status</h3>
-                                        <p className="text-white/60 text-sm">Citizen Verification</p>
+                                        <h3 className="font-bold text-lg text-gray-900 mb-1">Verification Status</h3>
+                                        <p className="text-gray-500 text-sm">Citizen Identity Verification</p>
                                     </div>
-                                    <div className="px-3 py-1 bg-sky-500/20 text-sky-400 border border-sky-500/30 rounded-full text-xs font-medium flex items-center gap-1">
-                                        <CheckCircle size={12} /> Verified
+                                    <div className="px-3 py-1 bg-green-50 text-green-700 border border-green-100 rounded-full text-xs font-bold flex items-center gap-1.5 ">
+                                        <CheckCircle size={14} className="text-green-600" /> Verified
                                     </div>
                                 </div>
 
-                                <div className="space-y-3 relative z-10 mt-6">
+                                <div className="space-y-4 relative z-10 mt-6">
                                     <div className="flex items-center justify-between text-sm">
-                                        <span className="text-white/50">KYC Level</span>
-                                        <span className="font-semibold">Level 3 (Biometric)</span>
+                                        <span className="text-gray-500 font-medium">KYC Level</span>
+                                        <span className="font-bold text-gray-900">Level 3 (Biometric)</span>
                                     </div>
-                                    <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
-                                        <div className="bg-sky-400 h-full w-full shadow-[0_0_10px_rgba(56,189,248,0.5)]"></div>
+                                    <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                                        <div className="bg-[#007AFF] h-full w-full shadow-sm rounded-full"></div>
                                     </div>
+                                    <p className="text-xs text-gray-400 mt-2">
+                                        Your biometric data is securely stored on your device.
+                                    </p>
                                 </div>
                             </div>
                         </div>
