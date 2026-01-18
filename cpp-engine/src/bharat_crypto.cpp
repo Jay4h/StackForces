@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include <string>
 
-
 // Platform-specific crypto includes
 #ifdef _WIN32
 #include <wincrypt.h>
@@ -139,9 +138,52 @@ Napi::String GenerateDID(const Napi::CallbackInfo &info) {
   return Napi::String::New(env, "did:bharat:" + hashHex);
 }
 
+/**
+ * Generate Shadow DID (Service-Specific ID)
+ * Formula: SHA256(MasterDID + ServiceID)
+ * This ensures the service only sees a unique ID, not the user's global DID.
+ */
+Napi::String GenerateShadowDID(const Napi::CallbackInfo &info) {
+  Napi::Env env = info.Env();
+
+  if (info.Length() < 2) {
+    Napi::TypeError::New(env, "Expected 2 arguments: masterDID and serviceID")
+        .ThrowAsJavaScriptException();
+    return Napi::String::New(env, "");
+  }
+
+  if (!info[0].IsString() || !info[1].IsString()) {
+    Napi::TypeError::New(env, "All arguments must be strings")
+        .ThrowAsJavaScriptException();
+    return Napi::String::New(env, "");
+  }
+
+  std::string masterDID = info[0].As<Napi::String>().Utf8Value();
+  std::string serviceID = info[1].As<Napi::String>().Utf8Value();
+
+  // Shadow ID Formula
+  std::string rawInput = masterDID + serviceID;
+
+  std::string hashHex;
+  try {
+    hashHex = computeSHA256(rawInput);
+  } catch (const std::exception &e) {
+    Napi::Error::New(env, e.what()).ThrowAsJavaScriptException();
+    return Napi::String::New(env, "");
+  }
+
+  // Format: "did:bharat:shadow:<hash>"
+  return Napi::String::New(env, "did:bharat:shadow:" + hashHex);
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "generateDID"),
               Napi::Function::New(env, GenerateDID));
+
+  // Register new function
+  exports.Set(Napi::String::New(env, "generateShadowDID"),
+              Napi::Function::New(env, GenerateShadowDID));
+
   return exports;
 }
 

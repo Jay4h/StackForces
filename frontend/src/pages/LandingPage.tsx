@@ -1,7 +1,41 @@
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Lock, Globe, TrendingUp, BarChart3, PieChart, ShieldCheck, Activity, Menu, X } from 'lucide-react';
+import { Zap, Lock, Globe, TrendingUp, BarChart3, PieChart, ShieldCheck, Activity, Menu, X, Plus } from 'lucide-react';
+
+/**
+ * FAQ Item Component
+ * Expanding accordion item with smooth animation and clean design.
+ */
+const FAQItem = ({ question, answer, isOpen, onClick }: any) => {
+    return (
+        <div className="mb-4 rounded-[20px] bg-[#F9FAFB] hover:bg-[#F3F4F6] transition-colors overflow-hidden">
+            <button
+                onClick={onClick}
+                className="w-full flex items-center justify-between p-6 text-left"
+            >
+                <span className="text-lg font-medium text-gray-900 pr-8">{question}</span>
+                <span className={`flex-shrink-0 p-2 rounded-full bg-white shadow-sm border border-gray-100 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>
+                    <Plus className="w-5 h-5 text-gray-400" />
+                </span>
+            </button>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    >
+                        <div className="px-6 pb-6 text-gray-500 leading-relaxed">
+                            {answer}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </div>
+    );
+};
 
 /**
  * Feature Card Component
@@ -52,6 +86,30 @@ export default function LandingPage() {
     const navigate = useNavigate();
     const containerRef = useRef(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+    const faqs = [
+        {
+            question: "How long does setup take?",
+            answer: "Setting up your Praman-ID takes less than 2 minutes. Simply scan your biometrics, and your secure digital vault is created instantly on your device."
+        },
+        {
+            question: "Is my personal data secure?",
+            answer: "Absolutely. Praman uses a decentralized architecture where your biometric data is encrypted and stored only on your device's Secure Enclave. It never touches our servers."
+        },
+        {
+            question: "Who can verify my ID?",
+            answer: "Only authorized service providers you explicitly approve can verify your ID. You share only what's necessary (e.g., 'Over 18') using Zero-Knowledge Proofs."
+        },
+        {
+            question: "Can I revoke my ID?",
+            answer: "Yes, you have full control. You can revoke access to specific services or delete your ID entirely from your device at any time."
+        },
+        {
+            question: "What if I lose my device?",
+            answer: "Since your ID is bound to your hardware, you simply enroll again on your new device. Your old ID becomes invalid without your biometric authentication."
+        }
+    ];
 
 
 
@@ -222,13 +280,13 @@ export default function LandingPage() {
                     >
                         <button
                             onClick={() => navigate('/enroll')}
-                            className="bg-[#659BFF] text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:bg-blue-600 transition-colors shadow-md transform active:scale-95"
+                            className="bg-[#000000] text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:bg-blue-600 transition-colors shadow-md transform active:scale-95"
                         >
                             Create Digital ID
                         </button>
                         <button
                             onClick={() => navigate('/microservices')}
-                            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:from-purple-700 hover:to-pink-700 transition-all shadow-md transform active:scale-95 flex items-center gap-2"
+                            className="bg-[#000000] text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:bg-blue-600 transition-colors shadow-md transform active:scale-95"
                         >
                             🔧 View Microservices
                         </button>
@@ -306,27 +364,32 @@ export default function LandingPage() {
                         transition={{ duration: 0.8, delay: 0.2 }}
                         className="grid grid-cols-1 md:grid-cols-3 gap-12"
                     >
+                        {/* Lock - Centralized Honeypots */}
                         <div className="space-y-4">
-                            <div className="w-12 h-12 bg-red-50 rounded-2xl flex items-center justify-center text-red-500 mb-4">
-                                <Lock size={24} />
+                            <div className="w-14 h-14 bg-[#FFEEEE] rounded-[20px] flex items-center justify-center text-[#FF3B30] mb-4 shadow-sm border border-[#FFE5E5]">
+                                <Lock size={26} strokeWidth={2.5} />
                             </div>
                             <h3 className="text-xl font-semibold text-[#1d1d1f]">Centralized Honeypots</h3>
                             <p className="text-gray-500 leading-relaxed text-[15px]">
                                 Traditional systems store billions of biometrics in one place. One breach exposes everyone.
                             </p>
                         </div>
+
+                        {/* Globe - Privacy Loss */}
                         <div className="space-y-4">
-                            <div className="w-12 h-12 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-500 mb-4">
-                                <Globe size={24} />
+                            <div className="w-14 h-14 bg-[#FFF4E5] rounded-[20px] flex items-center justify-center text-[#FF9500] mb-4 shadow-sm border border-[#FFEACC]">
+                                <Globe size={26} strokeWidth={2.5} />
                             </div>
                             <h3 className="text-xl font-semibold text-[#1d1d1f]">Privacy Loss</h3>
                             <p className="text-gray-500 leading-relaxed text-[15px]">
                                 Services track you across platforms. Your digital footprint is sold without consent.
                             </p>
                         </div>
+
+                        {/* Zap - Slow Verification */}
                         <div className="space-y-4">
-                            <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center text-gray-500 mb-4">
-                                <Zap size={24} />
+                            <div className="w-14 h-14 bg-[#EAF4FF] rounded-[20px] flex items-center justify-center text-[#007AFF] mb-4 shadow-sm border border-[#E0EFFF]">
+                                <Zap size={26} strokeWidth={2.5} />
                             </div>
                             <h3 className="text-xl font-semibold text-[#1d1d1f]">Slow Verification</h3>
                             <p className="text-gray-500 leading-relaxed text-[15px]">
@@ -427,6 +490,37 @@ export default function LandingPage() {
                     </div>
                 </div>
             </section >
+
+            {/* FAQ Section */}
+            <section id="faq" className="py-32 px-6 md:px-12 bg-white border-t border-gray-100">
+                <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24">
+                    {/* Left Side */}
+                    <div className="lg:w-1/3 space-y-6">
+                        <div className="inline-flex px-4 py-1.5 rounded-full border border-gray-200 bg-white shadow-sm text-sm font-medium text-gray-600">
+                            FAQ
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-semibold text-[#1d1d1f] tracking-tight">
+                            All You Need to Know
+                        </h2>
+                        <p className="text-gray-500 text-lg leading-relaxed">
+                            Everything you need to know about the product and billing. Can’t find the answer you’re looking for? Please chat to our friendly team.
+                        </p>
+                    </div>
+
+                    {/* Right Side - Accordion */}
+                    <div className="lg:w-2/3">
+                        {faqs.map((faq, index) => (
+                            <FAQItem
+                                key={index}
+                                question={faq.question}
+                                answer={faq.answer}
+                                isOpen={index === openFaqIndex}
+                                onClick={() => setOpenFaqIndex(index === openFaqIndex ? null : index)}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* CTA */}
             < section className="py-32 px-6 md:px-12 bg-white text-center" >

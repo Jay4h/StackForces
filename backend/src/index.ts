@@ -1,18 +1,19 @@
+// MUST BE FIRST - Load environment variables
+import './config/env';
+
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import dotenv from 'dotenv';
-dotenv.config();
 import { connectDatabase } from './config/database';
 import { initCPPModule } from './services/cpp-bridge';
 import enrollmentRoutes from './routes/enrollment.routes';
-// backend/src/index.ts
+import healthRoutes from './routes/health.routes';
+import userRoutes from './routes/user.routes';
+import profileRoutes from './routes/profile.routes';
+import familyRoutes from './routes/family.routes';
+import oauthRoutes from './routes/oauth.routes';
 import redisClient, { connectRedis } from './config/redis';
-
-
-
-// Load environment variables
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
@@ -59,6 +60,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/enrollment', enrollmentRoutes);
+app.use('/api/health', healthRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/profile', profileRoutes);
+app.use('/api/family', familyRoutes);
+app.use('/api/oauth', oauthRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
@@ -75,8 +81,10 @@ app.get('/', (req, res) => {
         message: '🇮🇳 Bharat-ID API',
         version: '1.0.0',
         endpoints: {
-            health: '/health',
-            enrollment: '/api/enrollment'
+            healthCheck: '/health',
+            enrollment: '/api/enrollment',
+            healthPortal: '/api/health',
+            user: '/api/user'
         }
     });
 });
@@ -91,8 +99,6 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
 });
 
 // Start server
-
-
 const startServer = async () => {
     try {
         // Connect to MongoDB
@@ -104,7 +110,7 @@ const startServer = async () => {
         // Initialize C++ module (with graceful fallback)
         initCPPModule();
 
-        // Start Express server
+        //  Start Express server
         app.listen(PORT, () => {
             console.log('=================================');
             console.log('🇮🇳  Bharat-ID Backend Server');

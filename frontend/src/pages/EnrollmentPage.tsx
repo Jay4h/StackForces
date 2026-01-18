@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { webAuthnClient } from '../services/webauthn-client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Fingerprint, Lock, ShieldCheck, AlertCircle } from 'lucide-react';
 
 export default function EnrollmentPage() {
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [isEnrolling, setIsEnrolling] = useState(false);
     const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [message, setMessage] = useState('');
@@ -25,6 +27,22 @@ export default function EnrollmentPage() {
             if (response.success && response.did) {
                 setStatus('success');
                 setDid(response.did);
+
+                // Save user data to authentication context
+                login({
+                    did: response.did,
+                    publicKey: response.publicKey || localStorage.getItem('praman_publicKey') || '',
+                    credentialId: response.credentialId || localStorage.getItem('praman_credentialId') || '',
+                    deviceInfo: {
+                        deviceType: deviceType,
+                        deviceName: navigator.userAgent.includes('Windows') ? 'Windows PC' :
+                            navigator.userAgent.includes('Mac') ? 'macOS' :
+                                navigator.userAgent.includes('Android') ? 'Android Phone' :
+                                    navigator.userAgent.includes('iPhone') ? 'iPhone' : 'Unknown Device'
+                    },
+                    enrolledAt: new Date().toISOString()
+                });
+
                 setTimeout(() => navigate('/home'), 2500);
             } else {
                 throw new Error(response.message || 'Enrollment failed');

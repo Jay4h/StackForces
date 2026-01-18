@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Heart, Leaf, Building2, Menu, X } from 'lucide-react';
@@ -44,7 +44,7 @@ const Navbar = () => {
                                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[280px] bg-white rounded-2xl shadow-xl border border-gray-100 p-2 overflow-hidden"
                                 >
                                     <div className="py-1">
-                                        <Link to="/services?type=healthcare" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors group/item">
+                                        <Link to="/health" className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-xl transition-colors group/item">
                                             <div className="w-8 h-8 rounded-lg bg-red-50 text-red-500 flex items-center justify-center group-hover/item:scale-110 transition-transform">
                                                 <Heart size={16} />
                                             </div>
@@ -139,14 +139,18 @@ const Navbar = () => {
                                                         exit={{ opacity: 0, height: 0 }}
                                                         className="overflow-hidden pl-4 flex flex-col gap-4 mt-4"
                                                     >
-                                                        {['Healthcare', 'Agriculture', 'Smart Cities'].map(sub => (
+                                                        {[
+                                                            { name: 'Healthcare', path: '/health' },
+                                                            { name: 'Agriculture', path: '/services/agriculture' },
+                                                            { name: 'Smart Cities', path: '/services/smart-cities' }
+                                                        ].map(sub => (
                                                             <Link
-                                                                key={sub}
-                                                                to={`/services/${sub.toLowerCase().replace(' ', '-')}`}
+                                                                key={sub.name}
+                                                                to={sub.path}
                                                                 onClick={() => setIsMobileMenuOpen(false)}
                                                                 className="text-base text-white/70 hover:text-white transition-colors"
                                                             >
-                                                                {sub}
+                                                                {sub.name}
                                                             </Link>
                                                         ))}
                                                     </motion.div>

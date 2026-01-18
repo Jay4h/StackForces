@@ -16,6 +16,7 @@ import crypto from 'crypto';
 interface CPPModule {
     generateMasterDID: (publicKey: string, hardwareId: string, salt: string) => string;
     generatePairwiseDID: (masterDID: string, serviceDomain: string) => string;
+    generateShadowDID: (masterDID: string, serviceID: string) => string;
     verifySignature: (publicKey: string, data: string, signature: string) => boolean;
     encryptPII: (data: string, key: string) => string;
     decryptPII: (encrypted: string, key: string) => string;
@@ -46,7 +47,7 @@ export const initCPPModule = (): void => {
         });
 
         if (IS_PRODUCTION && !CPP_FALLBACK_ENABLED) {
-            logger.fatal('💀 C++ module required in production. Exiting...');
+            logger.error('💀 C++ module required in production. Exiting...');
             throw new Error('C++ cryptographic module not available in production');
         } else {
             logger.warn('⚠️  Using JavaScript fallback (NOT recommended for production)');
@@ -83,6 +84,19 @@ export const generatePairwiseDID = (masterDID: string, serviceDomain: string): s
     } else {
         // Fallback path: JavaScript implementation
         return generatePairwiseDIDFallback(masterDID, serviceDomain);
+    }
+};
+
+/**
+ * Generate Shadow DID (OAUTH Service-Specific ID)
+ * This is used for third-party OAuth flows (e.g. Health Portal, Farm Portal)
+ * Formula: SHA256(MasterDID + KeepSecret(ClientID))
+ */
+export const generateShadowDID = (masterDID: string, serviceID: string): string => {
+    if (cppModule && cppModule.generateShadowDID) {
+        return cppModule.generateShadowDID(masterDID, serviceID);
+    } else {
+        return generateShadowDIDFallback(masterDID, serviceID);
     }
 };
 
@@ -156,6 +170,15 @@ function generatePairwiseDIDFallback(masterDID: string, serviceDomain: string): 
     const rawInput = `${masterDID}:${serviceDomain}:${DID_SALT}`;
     const hash = crypto.createHash('sha256').update(rawInput).digest('hex');
     return `did:praman:pairwise:${hash}`;
+}
+
+/**
+ * JavaScript fallback for Shadow DID generation
+ */
+function generateShadowDIDFallback(masterDID: string, serviceID: string): string {
+    const rawInput = masterDID + serviceID; // Formula as specified in C++
+    const hash = crypto.createHash('sha256').update(rawInput).digest('hex');
+    return `did:bharat:shadow:${hash}`;
 }
 
 /**
@@ -243,10 +266,17 @@ export const getCryptoEngineStatus = (): {
     };
 };
 
+/**
+ * Alias for generateMasterDID for backward compatibility
+ */
+export const generateDID = generateMasterDID;
+
 export default {
     initCPPModule,
     generateMasterDID,
+    generateDID,
     generatePairwiseDID,
+    generateShadowDID,
     verifySignature,
     encryptPII,
     decryptPII,
