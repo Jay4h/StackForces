@@ -218,13 +218,19 @@ export default function LandingPage() {
                             hidden: { opacity: 0, y: 20 },
                             visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.4 } }
                         }}
-                        className="mt-10 flex items-center justify-center gap-4 font-sans"
+                        className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 font-sans"
                     >
                         <button
                             onClick={() => navigate('/enroll')}
                             className="bg-[#659BFF] text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:bg-blue-600 transition-colors shadow-md transform active:scale-95"
                         >
                             Create Digital ID
+                        </button>
+                        <button
+                            onClick={() => navigate('/microservices')}
+                            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3.5 rounded-full text-[15px] font-medium hover:from-purple-700 hover:to-pink-700 transition-all shadow-md transform active:scale-95 flex items-center gap-2"
+                        >
+                            🔧 View Microservices
                         </button>
                         <a href="#how-it-works" className="text-[#659BFF] px-8 py-3.5 text-[15px] font-medium hover:underline flex items-center gap-1">
                             Learn more <span className="text-lg">›</span>

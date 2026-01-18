@@ -7,6 +7,8 @@ import ServicesPage from './pages/ServicesPage';
 import SettingsPage from './pages/SettingsPage';
 import MyFamilyPage from './pages/MyFamilyPage';
 import HowItWorksPage from './pages/HowItWorksPage';
+import MicroservicesDashboard from './pages/MicroservicesDashboard';
+import FlowCDemo from './pages/FlowCDemo';
 
 function App() {
     return (
@@ -20,6 +22,9 @@ function App() {
                 <Route path="/settings" element={<SettingsPage />} />
                 <Route path="/my-family" element={<MyFamilyPage />} />
                 <Route path="/how-it-works" element={<HowItWorksPage />} />
+                {/* Microservices & Healthcare Flows */}
+                <Route path="/microservices" element={<MicroservicesDashboard />} />
+                <Route path="/flow-c-demo" element={<FlowCDemo />} />
             </Routes>
         </BrowserRouter>
     );
