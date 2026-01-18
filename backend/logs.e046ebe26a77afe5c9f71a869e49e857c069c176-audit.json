@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\.e046ebe26a77afe5c9f71a869e49e857c069c176-audit.json",
+    "files": [
+        {
+            "date": 1768710524402,
+            "name": "logs\\praman-2026-01-18.log",
+            "hash": "ff52bd98b3f61563ccb47ce9a6969f69eb21eb00e28b8ef42e91ec4b3ecb4198"
+        },
+        {
+            "date": 1768712729406,
+            "name": "logs/praman-2026-01-18.log",
+            "hash": "bcac3fa0f8a91bacd83935bf455c93ac573ef094c9c68bbea8fc690944b40c0e"
+        }
+    ],
+    "hashType": "sha256"
+}

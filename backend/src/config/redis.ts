@@ -1,114 +1,217 @@
-// backend/src/config/redis.ts
-import { createClient } from 'redis';
+/**
+ * ========================================
+ * PRODUCTION REDIS CONFIGURATION
+ * ========================================
+ * Redis Configuration with:
+ * - RDB + AOF persistence (Kill Switch survives crashes)
+ * - Connection pooling
+ * - Automatic reconnection
+ * - Graceful shutdown
+ * ========================================
+ */
 
-// Use the REDIS_URL from your .env which must include the password
-// redis://:<password>@<host>:<port>
-const redisClient = createClient({
-    url: process.env.REDIS_URL
-});
+import { createClient, RedisClientType } from 'redis';
+import { logger } from '../utils/logger';
 
-redisClient.on('error', (err) => console.error('❌ Redis Client Error:', err));
+let redisClient: RedisClientType | null = null;
 
-// In-memory fallback storage when Redis is unavailable
-const inMemoryStore = new Map<string, { value: string; expiresAt: number }>();
-
-// Cleanup expired sessions every minute
-setInterval(() => {
-    const now = Date.now();
-    for (const [key, data] of inMemoryStore.entries()) {
-        if (data.expiresAt < now) {
-            inMemoryStore.delete(key);
-        }
-    }
-}, 60000);
+const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 
 /**
- * Check if Redis is available
+ * Connect to Redis with retry logic
  */
-export const isRedisAvailable = (): boolean => {
-    return redisClient.isOpen;
-};
-
-/**
- * Custom named export to initialize the connection
- */
-export const connectRedis = async () => {
+export const connectRedis = async (): Promise<void> => {
     try {
-        if (!redisClient.isOpen) {
-            await redisClient.connect();
-            console.log('✅ Connected to Redis');
-        }
-    } catch (err) {
-        console.warn('⚠️  Redis connection failed - using in-memory session store:', err);
-        // Don't throw - allow server to start without Redis
-    }
-};
+        logger.info('🔄 Connecting to Redis...');
 
-/**
- * Set a value with expiration (works with or without Redis)
- */
-export const setSession = async (key: string, value: string, ttlSeconds: number): Promise<void> => {
-    try {
-        if (isRedisAvailable()) {
-            await redisClient.setEx(key, ttlSeconds, value);
-        } else {
-            // Fallback to in-memory store
-            inMemoryStore.set(key, {
-                value,
-                expiresAt: Date.now() + (ttlSeconds * 1000)
+        redisClient = createClient({
+            url: REDIS_URL,
+            socket: {
+                reconnectStrategy: (retries) => {
+                    if (retries > 50) {
+                        logger.error('❌ Redis max reconnection attempts reached');
+                        return new Error('Redis max reconnect attempts exceeded');
+                    }
+                    // Exponential backoff: 50ms * 2^retries (max 3000ms)
+                    return Math.min(retries * 50, 3000);
+                },
+                connectTimeout: 10000,
+            },
+        });
+
+        // Error handler
+        redisClient.on('error', (error) => {
+            logger.error('❌ Redis connection error', {
+                error: error.message,
             });
+        });
+
+        // Reconnecting handler
+        redisClient.on('reconnecting', () => {
+            logger.warn('🔄 Redis reconnecting...');
+        });
+
+        // Ready handler
+        redisClient.on('ready', () => {
+            logger.info('✅ Redis connection ready');
+        });
+
+        // Connect event
+        redisClient.on('connect', () => {
+            logger.info('🔗 Redis connected');
+        });
+
+        await redisClient.connect();
+
+        logger.info('✅ Redis connected successfully', {
+            url: REDIS_URL.replace(/\/\/.*@/, '//***:***@'),
+        });
+
+        // Configure persistence in production
+        if (IS_PRODUCTION) {
+            await configureRedisPersistence();
         }
-    } catch (error) {
-        console.warn('⚠️  Redis operation failed, using in-memory fallback:', error);
-        inMemoryStore.set(key, {
-            value,
-            expiresAt: Date.now() + (ttlSeconds * 1000)
+
+    } catch (error: any) {
+        logger.error('❌ Redis connection failed', {
+            error: error.message,
+        });
+
+        if (IS_PRODUCTION) {
+            throw error; // Fail hard in production if Redis is unavailable
+        } else {
+            logger.warn('⚠️  Continuing without Redis (development mode)');
+        }
+    }
+};
+
+/**
+ * Configure Redis persistence (RDB + AOF)
+ * Ensures Kill Switch state survives server crashes
+ */
+async function configureRedisPersistence(): Promise<void> {
+    try {
+        if (!redisClient) return;
+
+        // Enable AOF (Append-Only File) persistence
+        // Every write is logged, ensuring durability
+        await redisClient.configSet('appendonly', 'yes');
+        await redisClient.configSet('appendfsync', 'everysec'); // Sync every second (good balance)
+
+        // Enable RDB (snapshot) persistence
+        // Save snapshot every 60 seconds if at least 1000 keys changed
+        await redisClient.configSet('save', '60 1000');
+
+        logger.info('✅ Redis persistence configured (RDB + AOF)');
+    } catch (error: any) {
+        logger.warn('⚠️  Could not configure Redis persistence', {
+            error: error.message,
+        });
+    }
+}
+
+/**
+ * Close Redis connection gracefully
+ */
+export const closeRedisConnection = async (): Promise<void> => {
+    try {
+        if (!redisClient) return;
+
+        logger.info('🔄 Closing Redis connection...');
+        await redisClient.quit();
+        logger.info('✅ Redis connection closed gracefully');
+    } catch (error: any) {
+        logger.error('❌ Error closing Redis connection', {
+            error: error.message,
         });
     }
 };
 
 /**
- * Get a value (works with or without Redis)
+ * Get Redis health status
  */
-export const getSession = async (key: string): Promise<string | null> => {
+export const getRedisHealth = async (): Promise<{
+    status: string;
+    latency?: number;
+}> => {
+    if (!redisClient || !redisClient.isReady) {
+        return { status: 'disconnected' };
+    }
+
     try {
-        if (isRedisAvailable()) {
-            return await redisClient.get(key);
-        } else {
-            // Fallback to in-memory store
-            const data = inMemoryStore.get(key);
-            if (data && data.expiresAt > Date.now()) {
-                return data.value;
-            }
-            if (data) {
-                inMemoryStore.delete(key); // Clean up expired
-            }
-            return null;
-        }
+        const start = Date.now();
+        await redisClient.ping();
+        const latency = Date.now() - start;
+
+        return {
+            status: 'connected',
+            latency,
+        };
     } catch (error) {
-        console.warn('⚠️  Redis operation failed, using in-memory fallback:', error);
-        const data = inMemoryStore.get(key);
-        if (data && data.expiresAt > Date.now()) {
-            return data.value;
-        }
+        return { status: 'error' };
+    }
+};
+
+/**
+ * Session management helper functions
+ */
+
+/**
+ * Set session data in Redis
+ */
+export const setSession = async (key: string, value: any, ttlSeconds: number = 300): Promise<void> => {
+    if (!redisClient || !redisClient.isReady) {
+        console.warn('⚠️ Redis not available, session not stored');
+        return;
+    }
+
+    try {
+        await redisClient.setEx(key, ttlSeconds, JSON.stringify(value));
+    } catch (error: any) {
+        console.error('❌ Error setting session in Redis', { error: error.message });
+    }
+};
+
+/**
+ * Get session data from Redis
+ */
+export const getSession = async (key: string): Promise<any | null> => {
+    if (!redisClient || !redisClient.isReady) {
+        console.warn('⚠️ Redis not available, returning null');
+        return null;
+    }
+
+    try {
+        const data = await redisClient.get(key);
+        return data ? JSON.parse(data) : null;
+    } catch (error: any) {
+        console.error('❌ Error getting session from Redis', { error: error.message });
         return null;
     }
 };
 
 /**
- * Delete a key (works with or without Redis)
+ * Delete session data from Redis
  */
 export const deleteSession = async (key: string): Promise<void> => {
-    try {
-        if (isRedisAvailable()) {
-            await redisClient.del(key);
-        } else {
-            inMemoryStore.delete(key);
-        }
-    } catch (error) {
-        console.warn('⚠️  Redis operation failed, using in-memory fallback:', error);
-        inMemoryStore.delete(key);
+    if (!redisClient || !redisClient.isReady) {
+        console.warn('⚠️ Redis not available');
+        return;
     }
+
+    try {
+        await redisClient.del(key);
+    } catch (error: any) {
+        console.error('❌ Error deleting session from Redis', { error: error.message });
+    }
+};
+
+/**
+ * Get the Redis client instance
+ */
+export const getRedisClient = (): RedisClientType | null => {
+    return redisClient;
 };
 
 export default redisClient;

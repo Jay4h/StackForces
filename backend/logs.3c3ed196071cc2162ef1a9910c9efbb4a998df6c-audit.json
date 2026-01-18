@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "logs\\.3c3ed196071cc2162ef1a9910c9efbb4a998df6c-audit.json",
+    "files": [
+        {
+            "date": 1768710524404,
+            "name": "logs\\praman-error-2026-01-18.log",
+            "hash": "6ab4196dd29a3ed16b9c82e9ebebad78e6043822ae71cc76d6fa7c8195f3db29"
+        },
+        {
+            "date": 1768712729415,
+            "name": "logs/praman-error-2026-01-18.log",
+            "hash": "9a1d33be9cda52d7561d0fa217eb72e709a22a4fb19585d9e16ffcf67fdbae32"
+        }
+    ],
+    "hashType": "sha256"
+}
