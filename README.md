@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Bharat-ID: Self-Sovereign Identity System
 
 **A decentralized identity framework for 1.4 billion citizens**
@@ -138,5 +137,4 @@ bharat-id/
 
 MIT License - Built for India 🇮🇳
 =======
-# Praman
->>>>>>> 6f05de0287ac5acfd070aa4e6ed0bc1a4cff043c
+
