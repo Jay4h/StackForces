@@ -10,6 +10,7 @@ Moving from the "Centralized Honeypot" model to Self-Sovereign Identity (SSI), w
 - **You** = Own and control your data
 
 ## 🏗️ Architecture
+<img width="1010" height="567" alt="image" src="https://github.com/user-attachments/assets/32737b64-3a76-471e-ae62-9f090a9d1fc4" />
 
 ### Three-Layer Design
 
